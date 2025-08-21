@@ -2,6 +2,7 @@ package com.auth.service.service;
 
 import com.auth.service.entity.User;
 import com.auth.service.entity.UserDetailsImpl;
+import com.auth.service.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,11 +13,13 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private final UserService userService;
+    private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.findByEmail(username);
+        User user = userRepository.findByEmail(username).orElseThrow(
+                () -> new UsernameNotFoundException(String.format("User |%s| not found", username))
+        );
         return new UserDetailsImpl(user);
     }
 }
