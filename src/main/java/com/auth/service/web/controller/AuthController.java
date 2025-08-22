@@ -1,4 +1,4 @@
-package com.auth.service.controller;
+package com.auth.service.web.controller;
 
 import com.auth.service.dtos.JwtTokenDTO;
 import com.auth.service.dtos.UserLoginDTO;

@@ -2,8 +2,10 @@ package com.auth.service.service;
 
 import com.auth.service.entity.User;
 import com.auth.service.entity.UserDetailsImpl;
+import com.auth.service.exceptions.EmailNotFoundException;
 import com.auth.service.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,7 +20,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(username).orElseThrow(
-                () -> new UsernameNotFoundException(String.format("User |%s| not found", username))
+                () -> new EmailNotFoundException(String.format("User |%s| not found", username))
         );
         return new UserDetailsImpl(user);
     }

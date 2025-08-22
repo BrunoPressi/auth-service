@@ -4,12 +4,13 @@ import com.auth.service.dtos.JwtTokenDTO;
 import com.auth.service.dtos.UserLoginDTO;
 import com.auth.service.entity.User;
 import com.auth.service.entity.UserDetailsImpl;
+import com.auth.service.exceptions.EmailNotFoundException;
 import com.auth.service.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,7 +23,7 @@ public class UserService {
 
     public User findByEmail(String email) {
         return userRepository.findByEmail(email).orElseThrow(
-                () -> new UsernameNotFoundException(String.format("User |%s| not found", email))
+                () -> new EmailNotFoundException(String.format("User |%s| not found", email))
         );
     }
 
@@ -32,6 +33,7 @@ public class UserService {
                 new UsernamePasswordAuthenticationToken(userLoginDTO.getEmail(), userLoginDTO.getPassword());
 
         Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         return new JwtTokenDTO(jwtTokenService.generateToken(userDetails));
     }

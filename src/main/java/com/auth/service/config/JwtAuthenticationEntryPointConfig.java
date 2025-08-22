@@ -6,6 +6,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
@@ -17,7 +18,7 @@ import java.time.LocalDateTime;
 
 @Component
 @RequiredArgsConstructor
-public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
+public class JwtAuthenticationEntryPointConfig implements AuthenticationEntryPoint {
 
     private final ObjectMapper objectMapper;
 
@@ -33,9 +34,13 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
         );
 
         response.setContentType("application/json");
+
         if(authException instanceof BadCredentialsException) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write(objectMapper.writeValueAsString(exceptionHandler));
+        } else {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.getWriter().write("{\"error\": \"Falha na autenticação\"}");
         }
 
     }
