@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
-public class UserServiceTests {
+public class UserServiceUnitTests {
 
     @Mock
     private UserRepository userRepository;
@@ -29,7 +29,7 @@ public class UserServiceTests {
     @Test
     public void findByEmailWithValidEmail() {
 
-        String email = "test@gmail.com";
+        String email = "test@email.com";
         List<Role> roles = new ArrayList<>();
         roles.add(Role.ROLE_CUSTOMER);
 
