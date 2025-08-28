@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final UserService userService;
-
-    @GetMapping
+    @PostMapping
     public ResponseEntity<JwtTokenDTO> authenticate(@RequestBody @Valid UserLoginDTO userLoginDTO) {
         JwtTokenDTO jwtTokenDTO = userService.authenticateUser(userLoginDTO);
         return ResponseEntity.ok(jwtTokenDTO);
