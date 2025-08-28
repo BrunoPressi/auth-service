@@ -43,8 +43,8 @@ public class RestControllerAdvice {
         LocalDateTime timestamp = LocalDateTime.now();
         String path = request.getRequestURI();
         String errorMessage = e.getMessage();
-        String statusMessage = HttpStatus.UNAUTHORIZED.getReasonPhrase();
-        int statusCode = HttpStatus.UNAUTHORIZED.value();
+        String statusMessage = HttpStatus.NOT_FOUND.getReasonPhrase();
+        int statusCode = HttpStatus.NOT_FOUND.value();
 
         com.auth.service.web.exception.ExceptionHandler exceptionHandler = new com.auth.service.web.exception.ExceptionHandler(
                 timestamp,
@@ -55,7 +55,7 @@ public class RestControllerAdvice {
         );
 
         return ResponseEntity
-                .status(HttpStatus.UNAUTHORIZED.value())
+                .status(HttpStatus.NOT_FOUND.value())
                 .body(exceptionHandler);
 
     }

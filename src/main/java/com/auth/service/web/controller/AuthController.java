@@ -6,6 +6,7 @@ import com.auth.service.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class AuthController {
     @PostMapping
     public ResponseEntity<JwtTokenDTO> authenticate(@RequestBody @Valid UserLoginDTO userLoginDTO) {
         JwtTokenDTO jwtTokenDTO = userService.authenticateUser(userLoginDTO);
-        return ResponseEntity.ok(jwtTokenDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(jwtTokenDTO);
     }
 
 }
