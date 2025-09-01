@@ -6,8 +6,7 @@ import com.auth.service.entity.User;
 import com.auth.service.entity.enums.Role;
 import com.auth.service.repository.UserRepository;
 import com.auth.service.web.exception.ExceptionHandler;
-import org.assertj.core.internal.ErrorMessages;
-import org.junit.jupiter.api.Assertions;
+import io.swagger.v3.oas.annotations.Operation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.springframework.util.Assert;
 
 import java.util.List;
 
