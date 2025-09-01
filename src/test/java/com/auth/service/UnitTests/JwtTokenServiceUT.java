@@ -1,4 +1,4 @@
-package com.auth.service.serviceTests;
+package com.auth.service.UnitTests;
 
 import com.auth.service.entity.User;
 import com.auth.service.entity.UserDetailsImpl;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @ExtendWith(MockitoExtension.class)
-public class JwtTokenServiceUnitTests {
+public class JwtTokenServiceUT {
 
     JwtTokenService tokenService;
 

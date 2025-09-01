@@ -1,4 +1,4 @@
-package com.auth.service.controllerTests;
+package com.auth.service.IntegrationTests;
 
 import com.auth.service.dtos.JwtTokenDTO;
 import com.auth.service.dtos.UserLoginDTO;
@@ -6,7 +6,6 @@ import com.auth.service.entity.User;
 import com.auth.service.entity.enums.Role;
 import com.auth.service.repository.UserRepository;
 import com.auth.service.web.exception.ExceptionHandler;
-import io.swagger.v3.oas.annotations.Operation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

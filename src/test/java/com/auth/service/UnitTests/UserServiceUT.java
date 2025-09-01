@@ -1,4 +1,4 @@
-package com.auth.service.serviceTests;
+package com.auth.service.UnitTests;
 
 import com.auth.service.entity.User;
 import com.auth.service.entity.enums.Role;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
-public class UserServiceUnitTests {
+public class UserServiceUT {
 
     @Mock
     private UserRepository userRepository;
